@@ -64,10 +64,18 @@ public class ApplicationTest {
     }
 
     @Test
-    void shouldEmptyFields(){
+    void shouldEmptyFieldName(){
         $("[data-test-id=name] input").setValue("");
-        $("[data-test-id=phone] input").setValue("");
+        $("[data-test-id=phone] input").setValue("+79876543210");
         $("button.button").click();
         $("[data-test-id=name]").should(cssClass("input_invalid"));
+    }
+
+    @Test
+    void shouldEmptyFieldPhone(){
+        $("[data-test-id=name] input").setValue("Макаренко Алексей");
+        $("[data-test-id=phone] input").setValue("");
+        $("button.button").click();
+        $("[data-test-id=phone]").should(cssClass("input_invalid"));
     }
 }
